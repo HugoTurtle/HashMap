@@ -1,3 +1,4 @@
+import LinkedList from "./linked-lists/linked-list.js";
 export class HashMap {
     constructor() {
         this.capacity = 16;
@@ -13,5 +14,16 @@ export class HashMap {
         }
       
         return hashCode % this.buckets.length;
+    }
+    set(key, value) {
+        const hashCode = this.hash(key);
+        let currentBucket = this.buckets[hashCode];
+
+        if(typeof currentBucket === 'undefined') {
+            const list = new LinkedList();
+            this.buckets[hashCode] = list;
+            currentBucket = list;
+        }
+        currentBucket.update(key, value);
     }
 }
