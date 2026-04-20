@@ -1,0 +1,39 @@
+import Node from "./node.js"
+export default class LinkedList {
+    constructor() {
+        this.head = null;
+    }
+    append(key, value) {
+        const newNode = new Node(key, value)
+        if(!this.head) {
+            this.head = newNode;
+        } else {
+            let currentNode = this.head;
+            while(currentNode.next) {
+                currentNode = currentNode.next;
+            }
+            currentNode.next = newNode;
+        }
+
+    }
+    update(key, value) {
+        let node = this.head;
+        while(node) {
+            if(node.key === key) {
+                node.value = value;
+                return;
+            }
+            node = node.next;
+        }
+        this.append(key, value);
+    }
+    get(key) {
+        let node = this.head;
+        while(node) {
+            if(node.key === key) {
+                return node.value;
+            }
+            node = node.next;
+        }
+    }
+}
