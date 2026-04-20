@@ -36,5 +36,12 @@ export class HashMap {
         const bucket = this.buckets[index];
         return bucket.contains(key);
     }
+    remove(key) {
+        const index = this.hash(key);
+        const bucket = this.buckets[index];
 
+        if (!bucket) return false;
+        
+        return bucket.remove(key);
+    }
 }

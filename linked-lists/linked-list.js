@@ -44,4 +44,20 @@ export default class LinkedList {
         }
         return false;
     }
+    remove(key) {
+        if (this.head && this.head.key === key) {
+            this.head = this.head.next;
+            return true;
+        }
+        
+        let node = this.head;
+        while(node) {
+            if(node.next != null && node.next.key === key) {
+                node.next = node.next.next;
+                return true
+            }
+            node = node.next;
+        }
+        return false;
+    }
 }
