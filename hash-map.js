@@ -3,7 +3,8 @@ export class HashMap {
     constructor() {
         this.capacity = 16;
         this.loadFactor = 0.75;
-        this.buckets = new Array(this.capacity);   
+        this.size = 0;
+        this.buckets = new Array(this.capacity); 
     }
     hash(key) {
         let hashCode = 0;
@@ -24,7 +25,8 @@ export class HashMap {
             this.buckets[hashCode] = list;
             currentBucket = list;
         }
-        currentBucket.update(key, value);
+        const isNewKey = currentBucket.update(key, value);
+        if(isNewKey) this.size++;
     }
     get(key) {
         const bucket = this.buckets[this.hash(key)];
@@ -40,16 +42,16 @@ export class HashMap {
 
         if (!bucket) return false;
 
-        return bucket.remove(key);
+        const removed = bucket.remove(key);
+        
+        if(removed) {
+            this.size--;
+        }
+
+        return removed;
     }
     length() {
-        let size = 0;
-        for(let i = 0; i < this.buckets.length; i++) {
-            if(i in this.buckets) {
-                size += this.buckets[i].size();
-            }
-        }
-        return size;
+        return this.size;
     }
     clear() {
         this.buckets = new Array(this.capacity);
