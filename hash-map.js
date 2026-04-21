@@ -31,9 +31,8 @@ export class HashMap {
         return bucket ? bucket.get(key) : null;
     }
     has(key) {
-        const index = this.hash(key);
-        const bucket = this.buckets[index];
-        return bucket.contains(key);
+        const bucket = this.buckets[this.hash(key)];
+        return bucket ? bucket.contains(key) : false;
     }
     remove(key) {
         const index = this.hash(key);
