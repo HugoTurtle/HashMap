@@ -2,6 +2,7 @@ import Node from "./node.js"
 export default class LinkedList {
     constructor() {
         this.head = null;
+        this.length = 0;
     }
     append(key, value) {
         const newNode = new Node(key, value)
@@ -14,7 +15,7 @@ export default class LinkedList {
             }
             currentNode.next = newNode;
         }
-
+        this.length++;
     }
     update(key, value) {
         let node = this.head;
@@ -47,6 +48,7 @@ export default class LinkedList {
     remove(key) {
         if (this.head && this.head.key === key) {
             this.head = this.head.next;
+            this.length--;
             return true;
         }
         
@@ -54,6 +56,7 @@ export default class LinkedList {
         while(node) {
             if(node.next != null && node.next.key === key) {
                 node.next = node.next.next;
+                this.length--;
                 return true
             }
             node = node.next;
@@ -61,14 +64,7 @@ export default class LinkedList {
         return false;
     }
     size() {
-        let node = this.head;
-        let size = 0;
-
-        while(node) {
-            size++;
-            node = node.next;
-        }
-        return size;
+        return this.length;
     }
     getKeys() {
         let node = this.head;
