@@ -27,9 +27,8 @@ export class HashMap {
         currentBucket.update(key, value);
     }
     get(key) {
-        const index = this.hash(key);
-        const bucket = this.buckets[index];
-        return bucket.get(key);
+        const bucket = this.buckets[this.hash(key)];
+        return bucket ? bucket.get(key) : null;
     }
     has(key) {
         const index = this.hash(key);
