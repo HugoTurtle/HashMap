@@ -70,4 +70,13 @@ export default class LinkedList {
         }
         return size;
     }
+    getKeys() {
+        let node = this.head;
+        let arr = [];
+        while(node) {
+            arr.push(node.key)
+            node = node.next;
+        }
+        return arr;
+    }
 }

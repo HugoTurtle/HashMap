@@ -54,4 +54,13 @@ export class HashMap {
     clear() {
         this.buckets = new Array(this.capacity);
     }
+    keys() {
+        let arr = [];
+        for(let i = 0; i < this.buckets.length; i++) {
+            if(this.buckets[i]) {
+                arr.push(...this.buckets[i].getKeys());
+            }
+        }
+        return arr;
+    }
 }
