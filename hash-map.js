@@ -63,4 +63,13 @@ export class HashMap {
         }
         return arr;
     }
+    values() {
+        let arr = [];
+        for(let bucket of this.buckets) {
+            if(bucket) {
+                arr.push(bucket.getValues());
+            }
+        }
+        return arr; 
+    }
 }
