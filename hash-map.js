@@ -20,7 +20,7 @@ export class HashMap {
         if (this.size / this.capacity > this.loadFactor) {
             this.resize();
         }
-        
+
         const hashCode = this.hash(key);
         let currentBucket = this.buckets[hashCode];
 
@@ -73,7 +73,7 @@ export class HashMap {
         let arr = [];
         for(let bucket of this.buckets) {
             if(bucket) {
-                arr.push(bucket.getValues());
+                arr.push(...bucket.getValues());
             }
         }
         return arr; 
