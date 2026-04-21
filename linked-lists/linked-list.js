@@ -88,4 +88,13 @@ export default class LinkedList {
         }
         return arr;   
     }
+    getEntries() {
+        let node = this.head;
+        let arr = [];
+        while(node) {
+            arr.push([node.key, node.value]);
+            node = node.next;
+        }
+        return arr;
+    }
 }
