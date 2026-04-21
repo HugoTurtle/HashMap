@@ -60,4 +60,14 @@ export default class LinkedList {
         }
         return false;
     }
+    size() {
+        let node = this.head;
+        let size = 0;
+
+        while(node) {
+            size++;
+            node = node.next;
+        }
+        return size;
+    }
 }
