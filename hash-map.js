@@ -17,6 +17,10 @@ export class HashMap {
         return hashCode % this.buckets.length;
     }
     set(key, value) {
+        if (this.size / this.capacity > this.loadFactor) {
+            this.resize();
+        }
+        
         const hashCode = this.hash(key);
         let currentBucket = this.buckets[hashCode];
 
@@ -82,5 +86,22 @@ export class HashMap {
             }
         }
         return arr; 
+    }
+    resize() {
+        const oldBuckets = this.buckets;
+    
+        this.capacity *= 2;
+        this.buckets = new Array(this.capacity);
+        this.size = 0;
+    
+        for (let bucket of oldBuckets) {
+            if (!bucket) continue;
+    
+            let node = bucket.head;
+            while (node) {
+                this.set(node.key, node.value);
+                node = node.next;
+            }
+        }
     }
 }
