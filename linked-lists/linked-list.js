@@ -22,7 +22,7 @@ export default class LinkedList {
         while(node) {
             if(node.key === key) {
                 node.value = value;
-                return;
+                return false;
             }
             node = node.next;
         }
