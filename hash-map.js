@@ -51,4 +51,7 @@ export class HashMap {
         }
         return size;
     }
+    clear() {
+        this.buckets = new Array(this.capacity);
+    }
 }
