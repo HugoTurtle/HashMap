@@ -27,6 +27,7 @@ export default class LinkedList {
             node = node.next;
         }
         this.append(key, value);
+        return true;
     }
     get(key) {
         let node = this.head;
