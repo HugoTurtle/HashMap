@@ -17,7 +17,7 @@ export class HashMap {
         return hashCode % this.buckets.length;
     }
     set(key, value) {
-        if (this.size >= this.capacity * this.loadFactor) {
+        if (this.size > this.capacity * this.loadFactor) {
             this.resize();
         }
 
